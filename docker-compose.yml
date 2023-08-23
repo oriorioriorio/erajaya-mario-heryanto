@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  go-app:
+    build:
+      context: ./go-app
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=goappuser
+      - MYSQL_PASSWORD=goapppassword
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    networks:
+      - fullstack
+
+  mysql:
+    build:
+      context: ./mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=erajaya
+      - MYSQL_USER=goappuser
+      - MYSQL_PASSWORD=goapppassword
+    networks:
+      - fullstack
+    volumes:
+      - ./mysql/migrations:/docker-entrypoint-initdb.d
+
+  redis:
+    build:
+      context: ./redis
+    ports:
+      - "127.0.0.1:6379:6379"
+    networks:
+      - fullstack
+      
+networks:
+  fullstack:
+    driver: bridge

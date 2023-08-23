@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "f260843c-cca2-492a-bfd3-62a4440cb2ab",
+		"name": "Erajaya",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28276497"
+	},
+	"item": [
+		{
+			"name": "Add Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Macbook PRO\",\n    \"price\": 21000000,\n    \"description\": \"Macbook PRO 14 inch\",\n    \"quantity\": 7\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/product",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/product?sort=terbaru&sort=name (A  - Z)&sort=name (Z - A)&sort=termahal&sort=termurah",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "terbaru"
+						},
+						{
+							"key": "sort",
+							"value": "name (A  - Z)"
+						},
+						{
+							"key": "sort",
+							"value": "name (Z - A)"
+						},
+						{
+							"key": "sort",
+							"value": "termahal"
+						},
+						{
+							"key": "sort",
+							"value": "termurah"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
